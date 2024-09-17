@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Post</title>
+    <link rel="stylesheet" href="/post.css">
+</head>
+<body>
+    <header>
+        <h1>New Post</h1>
+    </header>
+    <main>
+        <div class="post-form-container">
+            <form action="/submit_post" method="POST">
+                <label for="domain">Domain:</label><br>
+                <input type="text" id="domain" name="domain" placeholder="enter domain" required><br><br>
+
+                <label for="question">Question:</label><br>
+                <textarea id="question" name="question" placeholder="type question" required></textarea><br><br>
+
+                <button type="submit">Submit</button>
+            </form>
+            <a class="button1" href="/home">home</a>
+        </div>
+    </main>
+</body>
+</html>

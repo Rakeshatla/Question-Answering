@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Questions</title>
+    <link rel="stylesheet" href="/que.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>User Questions</h1>
+        </header>
+        <ul id="questionsList"></ul>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fetch and display questions
+            fetch('/user-questions1')
+                .then(response => response.json())
+                .then(data => {
+                    const questionsList = document.getElementById('questionsList');
+                    questionsList.innerHTML = '';
+
+                    data.forEach(question => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${question.user}</strong>: ${question.question}`;
+
+                        const replyForm = document.createElement('form');
+                        replyForm.innerHTML = `
+                            <input type="text" name="reply" placeholder="Reply">
+                            <button type="submit">Send</button>
+                        `;
+                        replyForm.addEventListener('submit', function(event) {
+                            event.preventDefault();
+                            const reply = this.elements['reply'].value;
+                            if (reply.trim() !== '') {
+                                fetch('/reply', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        questionId: question._id, // Use question._id directly
+                                        reply: reply
+                                    })
+                                })
+                                .then(response => {
+                                    if (response.ok) {
+                                        // Reload the page to refresh the questions
+                                        location.reload();
+                                    }
+                                })
+                                .catch(error => console.error('Error sending reply:', error));
+                            }
+                        });
+
+                        li.appendChild(replyForm);
+                        questionsList.appendChild(li);
+                    });
+                })
+                .catch(error => console.error('Error fetching questions:', error));
+        });
+        
+    </script>
+</body>
+</html> 

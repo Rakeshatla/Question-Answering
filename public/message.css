@@ -1,0 +1,49 @@
+/* message.css */
+
+/* Style for the messages list */
+
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+main {
+    padding: 20px;
+}
+
+#messagesList {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Style for each message item */
+#messagesList li {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+header {
+    background-color: #000000;
+    color: #F95700FF;
+    padding: 20px;
+    text-align: center;
+}
+/* Style for the message content */
+#messagesList li p {
+    margin: 0;
+}
+
+/* Style for the message timestamp */
+#messagesList li span {
+    font-size: 0.8em;
+    color: #666;
+}
